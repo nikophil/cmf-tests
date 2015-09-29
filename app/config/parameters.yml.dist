@@ -15,6 +15,6 @@ parameters:
     phpcr_workspace: default
     phpcr_user: admin
     phpcr_pass: admin
-
+    locale: fr
     # A secret key that's used to generate certain security-related tokens
     secret:            yesIAmSoSoSecret
