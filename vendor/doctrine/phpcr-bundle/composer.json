@@ -1,0 +1,53 @@
+{
+    "name": "doctrine/phpcr-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony DoctrinePHPCRBundle",
+    "keywords": ["PHPCR", "ODM", "Database", "Persistence"],
+    "homepage": "http://www.doctrine-project.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":"Lukas Kahwe Smith",
+            "email":"smith@pooteeweet.org"
+        },
+        {
+            "name": "Benjamin Eberlei",
+            "email": "kontakt@beberlei.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.3.27 || ~2.4 || ~2.5.11 || ~2.6.6 || ~2.7",
+        "symfony/doctrine-bridge": "~2.3",
+        "phpcr/phpcr-implementation": "2.1.*",
+        "phpcr/phpcr-utils": "~1.2.0"
+    },
+    "require-dev": {
+        "symfony/form": "~2.2",
+        "doctrine/phpcr-odm": "~1.1",
+        "jackalope/jackalope-jackrabbit": "~1.1.0",
+        "symfony-cmf/testing": "~1.1",
+        "matthiasnoback/symfony-dependency-injection-test": "0.*"
+    },
+    "suggest": {
+        "phpcr/phpcr-shell": "If you want native access to PHPCR-Shell to manage the PHPCR repository",
+        "doctrine/phpcr-odm": "if you want to use the odm as well. require version ~1.1",
+        "jackalope/jackalope-jackrabbit": "if you want to connect to jackrabbit. require version ~1.0.1",
+        "jackalope/jackalope-doctrine-dbal": "if you want to use jackalope-doctrine-dbal. require version 1.0.*",
+        "doctrine/data-fixtures": "if you want to use the fixture loading.",
+        "doctrine/doctrine-bundle": "when using jackalope-doctrine-dbal",
+        "burgov/key-value-form-bundle": "to edit assoc multivalue properties. require version 1.0.*"
+    },
+    "conflict": {
+        "phpcr/phpcr-shell": "<1.0.0-beta1"
+    },
+    "autoload": {
+        "psr-4": { "Doctrine\\Bundle\\PHPCRBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.2-dev"
+        }
+    }
+}
