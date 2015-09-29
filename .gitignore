@@ -1,22 +1,15 @@
 # Created by .ignore support plugin (hsz.mobi)
 # Web
-/web/*/compiled
-/web/assetic/
 /web/bundles/
-/web/media/
-/web/uploads/
 
 # Build cache and logs
 /app/bootstrap.php.cache
 /app/cache/*
 /app/logs/*
-/app/sessions/*
 
 # Config
 /app/config/parameters.yml
 /bin/
-*/.DS_Store
-/nbproject
 
 # Dependencies
 /vendor/
