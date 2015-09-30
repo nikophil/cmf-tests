@@ -3,11 +3,17 @@ namespace Acme\BasicCmsBundle\DataFixtures\PHPCR;
 
 use Acme\BasicCmsBundle\Document\Page;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ODM\PHPCR\DocumentManager;
 
-class LoadPageData implements FixtureInterface
+class LoadPageData implements FixtureInterface, OrderedFixtureInterface
 {
+    public function getOrder()
+    {
+        return 1;
+    }
+
     public function load(ObjectManager $dm)
     {
         if (!$dm instanceof DocumentManager) {
@@ -18,11 +24,12 @@ class LoadPageData implements FixtureInterface
         $parent = $dm->find(null, '/cms/pages');
 
         $rootPage = new Page();
-        $rootPage->setTitle('main');
+        $rootPage->setSlug('main');
         $rootPage->setParentDocument($parent);
         $dm->persist($rootPage);
 
         $page = new Page();
+        $page->setSlug('home');
         $page->setTitle('Home');
         $page->setParentDocument($rootPage);
         $page->setContent(<<<HERE
@@ -34,6 +41,7 @@ HERE
         $dm->persist($page);
 
         $page = new Page();
+        $page->setSlug('about');
         $page->setTitle('About');
         $page->setParentDocument($rootPage);
         $page->setContent(<<<HERE

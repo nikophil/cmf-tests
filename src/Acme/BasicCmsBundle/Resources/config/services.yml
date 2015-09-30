@@ -41,7 +41,7 @@ services:
         arguments:
             - '@cmf_menu.factory'
             - '@doctrine_phpcr'
-            - /cms/pages
+            - /cms/menu
         calls:
             - [setRequest, ["@?request="]]
         tags:

@@ -1,10 +1,10 @@
 Acme\BasicCmsBundle\Document\Page:
-    uri_schema: /page/{title}
+    uri_schema: /page/{slug}
     token_providers:
-        title: [content_method, { method: getTitle }]
+        slug: [content_method, { method: getSlug }]
 
 Acme\BasicCmsBundle\Document\Post:
-    uri_schema: /post/{date}/{title}
+    uri_schema: /post/{date}/{slug}
     token_providers:
         date: [content_datetime, { method: getDate }]
-        title: [content_method, { method: getTitle }]
+        slug: [content_method, { method: getSlug }]

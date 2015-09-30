@@ -19,6 +19,11 @@ trait ContentTrait
     /**
      * @PHPCR\Nodename()
      */
+    protected $slug;
+
+    /**
+     * @PHPCR\String(nullable=true)
+     */
     protected $title;
 
     /**
@@ -72,5 +77,23 @@ trait ContentTrait
     public function getRoutes()
     {
         return $this->routes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
     }
 }

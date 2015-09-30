@@ -2,12 +2,18 @@
 namespace Acme\BasicCmsBundle\DataFixtures\PHPCR;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use Acme\BasicCmsBundle\Document\Post;
 
-class LoadPostData implements FixtureInterface
+class LoadPostData implements FixtureInterface, OrderedFixtureInterface
 {
+    public function getOrder()
+    {
+        return 2;
+    }
+
     public function load(ObjectManager $dm)
     {
         if (!$dm instanceof DocumentManager) {
@@ -19,6 +25,7 @@ class LoadPostData implements FixtureInterface
 
         foreach (array('First', 'Second', 'Third', 'Fourth') as $title) {
             $post = new Post();
+            $post->setSlug(sprintf('%s-post', strtolower($title)));
             $post->setTitle(sprintf('My %s Post', $title));
             $post->setParentDocument($parent);
             $post->setContent(<<<HERE
