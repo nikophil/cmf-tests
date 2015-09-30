@@ -29,6 +29,8 @@ class LoadPageData implements FixtureInterface
 Welcome to the homepage of this really basic CMS.
 HERE
         );
+        $site = $dm->find('Acme\BasicCmsBundle\Document\Site', '/cms');
+        $site->setHomepage($page);
         $dm->persist($page);
 
         $page = new Page();

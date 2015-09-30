@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\RoutingAutoBundle\CmfRoutingAutoBundle(),
             new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
+            new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
 
             # Sensio Bundles
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),

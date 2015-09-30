@@ -14,6 +14,7 @@ return array(
     'Symfony\\Cmf\\Bundle\\RoutingAutoBundle\\' => array($vendorDir . '/symfony-cmf/routing-auto-bundle'),
     'Symfony\\Cmf\\Bundle\\MenuBundle\\' => array($vendorDir . '/symfony-cmf/menu-bundle'),
     'Symfony\\Cmf\\Bundle\\CoreBundle\\' => array($vendorDir . '/symfony-cmf/core-bundle'),
+    'Symfony\\Cmf\\Bundle\\BlockBundle\\' => array($vendorDir . '/symfony-cmf/block-bundle'),
     'Symfony\\Bundle\\SwiftmailerBundle\\' => array($vendorDir . '/symfony/swiftmailer-bundle'),
     'Symfony\\Bundle\\MonologBundle\\' => array($vendorDir . '/symfony/monolog-bundle'),
     'Symfony\\Bundle\\AsseticBundle\\' => array($vendorDir . '/symfony/assetic-bundle'),

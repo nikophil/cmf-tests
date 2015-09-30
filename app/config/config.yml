@@ -71,6 +71,11 @@ doctrine_phpcr:
        auto_generate_proxy_classes: "%kernel.debug%"
 
 # CMF config
+cmf_core:
+    persistence:
+        phpcr:
+            enabled: true
+
 cmf_routing:
     chain:
         routers_by_id:
@@ -87,6 +92,11 @@ cmf_routing:
             Acme\BasicCmsBundle\Document\Post: Acme\BasicCmsBundle\Controller\DefaultController::pageAction
 
 cmf_routing_auto:
+    persistence:
+        phpcr:
+            enabled: true
+
+cmf_block:
     persistence:
         phpcr:
             enabled: true
