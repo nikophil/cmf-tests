@@ -1,55 +1,50 @@
 <?php
 namespace Acme\BasicCmsBundle\DataFixtures\PHPCR;
 
-use Acme\BasicCmsBundle\Document\Page;
+use Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ODM\PHPCR\DocumentManager;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class LoadPageData implements FixtureInterface, OrderedFixtureInterface
+class LoadPageData extends ContainerAware implements FixtureInterface, OrderedFixtureInterface
 {
     public function getOrder()
     {
         return 1;
     }
 
-    public function load(ObjectManager $dm)
+    public function load(ObjectManager $manager)
     {
-        if (!$dm instanceof DocumentManager) {
-            $class = get_class($dm);
+        if (!$manager instanceof DocumentManager) {
+            $class = get_class($manager);
             throw new \RuntimeException("Fixture requires a PHPCR ODM DocumentManager instance, instance of '$class' given.");
         }
 
-        $parent = $dm->find(null, '/cms/pages');
+        $basepath = $this->container->getParameter('cmf_simple_cms.persistence.phpcr.basepath');
+        $root = $manager->find(null, $basepath);
+        $root->setTitle('simple cms root (hidden by the home route in the sandbox)');
 
-        $rootPage = new Page();
-        $rootPage->setSlug('main');
-        $rootPage->setParentDocument($parent);
-        $dm->persist($rootPage);
+        $this->createPage($manager, $root, 'about', 'About us', 'Some information about us', 'The about us page with some content');
+        $this->createPage($manager, $root, 'contact', 'Contact', 'A contact page', 'Please send an email to cmf-devs@groups.google.com');
 
+        $manager->flush();
+    }
+
+    /**
+     * @return Page instance with the specified information
+     */
+    protected function createPage(DocumentManager $manager, $parent, $name, $label, $title, $body)
+    {
         $page = new Page();
-        $page->setSlug('home');
-        $page->setTitle('Home');
-        $page->setParentDocument($rootPage);
-        $page->setContent(<<<HERE
-Welcome to the homepage of this really basic CMS.
-HERE
-        );
-        $site = $dm->find('Acme\BasicCmsBundle\Document\Site', '/cms');
-        $site->setHomepage($page);
-        $dm->persist($page);
+        $page->setPosition($parent, $name);
+        $page->setLabel($label);
+        $page->setTitle($title);
+        $page->setBody($body);
 
-        $page = new Page();
-        $page->setSlug('about');
-        $page->setTitle('About');
-        $page->setParentDocument($rootPage);
-        $page->setContent(<<<HERE
-This page explains what its all about.
-HERE
-        );
-        $dm->persist($page);
+        $manager->persist($page);
 
-        $dm->flush();
+        return $page;
     }
 }

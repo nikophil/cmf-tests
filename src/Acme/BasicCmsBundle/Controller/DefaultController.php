@@ -14,6 +14,10 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $dm = $this->get('doctrine_phpcr')->getManager();
+
+        $menus = $dm->find(null, '/cms/content/menu');
+        dump($menus);
+
         $site = $dm->find('Acme\BasicCmsBundle\Document\Site', '/cms');
         $homepage = $site->getHomepage();
 

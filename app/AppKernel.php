@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
             new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
+            new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
+            new Symfony\Cmf\Bundle\SimpleCmsBundle\CmfSimpleCmsBundle(),
 
             # Sensio Bundles
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
@@ -45,7 +47,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             # Custom Bundles
-            new Acme\BasicCmsBundle\AcmeBasicCmsBundle(),
+            new Acme\BasicCmsBundle\AcmeBasicCmsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
